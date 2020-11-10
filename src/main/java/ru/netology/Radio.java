@@ -26,14 +26,12 @@ public class Radio {
     }
 
     public void prevRadioStation() {
-
         if (currentRadioStation == 0) {
             this.currentRadioStation = amountRadioStation;
             return;
         }
         this.currentRadioStation = currentRadioStation - 1;
     }
-
 
     public void minusVolume() {
         if (currentVolume <= 0) {
@@ -63,11 +61,6 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation < 0) {
-            if (currentRadioStation > amountRadioStation){
-                return;
-            }
-        }
         this.currentRadioStation = currentRadioStation;
     }
 
