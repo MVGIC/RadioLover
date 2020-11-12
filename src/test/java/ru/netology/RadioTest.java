@@ -5,105 +5,78 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
+    @Test
+    public void stationConstructor() {
+        Radio radio = new Radio(20,10);
+        assertEquals(20,radio.getAmountRadioStation());
+        assertEquals(10,radio.getCurrentRadioStation());
+    }
+
+    @Test
+    public void shouldUseNoArgsConstructor(){
+        Radio radio = new Radio();
+        assertEquals(10,radio.getAmountRadioStation());
+    }
+
+    @Test
+    public void volumeConstructor(){
+        Radio radio = new Radio (50);
+        assertEquals(50,radio.getCurrentVolume());
+    }
 
     @Test
     void nextRadioStation() {
-
-        Radio radio = new Radio();
-
-        radio.setCurrentRadioStation(5);
-
+        Radio radio = new Radio(20,10);
         radio.nextRadioStation();
-
-        assertEquals(6, radio.getCurrentRadioStation());
+        assertEquals(11, radio.getCurrentRadioStation());
     }
 
     @Test
     void prevRadioStation() {
-
-        Radio radio = new Radio();
-
-        radio.setCurrentRadioStation(5);
-
+        Radio radio = new Radio(20,10);
         radio.prevRadioStation();
-
-        assertEquals(4, radio.getCurrentRadioStation());
+        assertEquals(9, radio.getCurrentRadioStation());
     }
 
     @Test
     void radioStationOverMax(){
-
-        Radio radio = new Radio();
-
-        radio.setCurrentRadioStation(9);
-
+        Radio radio = new Radio(20,20);
         radio.nextRadioStation();
-
         assertEquals(0, radio.getCurrentRadioStation());
     }
 
     @Test
     void radioStationUnderMax(){
-
-        Radio radio = new Radio();
-
-        radio.setCurrentRadioStation(0);
-
+        Radio radio = new Radio(20,0);
         radio.prevRadioStation();
-
-        assertEquals(9, radio.getCurrentRadioStation());
+        assertEquals(20, radio.getCurrentRadioStation());
     }
-
-
 
     @Test
     void minusVolume() {
-
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(5);
-
+        Radio radio = new Radio(50);
         radio.minusVolume();
-
-        assertEquals(4, radio.getCurrentVolume());
+        assertEquals(49, radio.getCurrentVolume());
     }
 
     @Test
     void plusVolume() {
-
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(5);
-
+        Radio radio = new Radio(50);
         radio.plusVolume();
-
-        assertEquals(6, radio.getCurrentVolume());
+        assertEquals(51, radio.getCurrentVolume());
     }
-
 
     @Test
     void plusVolumeOverMax(){
-
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(10);
-
+        Radio radio = new Radio(100);
         radio.plusVolume();
-
-        assertEquals(10, radio.getCurrentVolume());
+        assertEquals(100, radio.getCurrentVolume());
     }
-
 
     @Test
     void minusVolumeUnderMin(){
-
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(0);
-
+        Radio radio = new Radio(0);
         radio.minusVolume();
-
         assertEquals(0, radio.getCurrentVolume());
     }
-
 }
